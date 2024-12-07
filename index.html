@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片压缩工具</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <header>
+            <h1>
+                <svg class="title-icon" viewBox="0 0 24 24" width="36" height="36">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                </svg>
+                图片压缩工具
+            </h1>
+            <p>支持 PNG、JPG 格式的图片压缩</p>
+        </header>
+
+        <!-- 上传区域 -->
+        <div class="upload-container" id="dropZone">
+            <input type="file" id="fileInput" accept="image/*" hidden>
+            <div class="upload-content">
+                <svg class="upload-icon" viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+                <p>拖拽图片到这里或点击上传</p>
+            </div>
+        </div>
+
+        <!-- 压缩控制区域 -->
+        <div class="compression-controls">
+            <label for="quality">压缩质量：</label>
+            <input type="range" id="quality" min="0" max="100" value="75">
+            <span id="qualityValue">75%</span>
+            <span class="quality-hint">(数值越小，压缩率越高)</span>
+        </div>
+
+        <!-- 预览区域 -->
+        <div class="preview-container">
+            <div class="preview-box">
+                <h3>
+                    <svg class="preview-icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                    </svg>
+                    原图预览
+                </h3>
+                <div class="image-container">
+                    <img id="originalImage" alt="原图预览">
+                </div>
+                <div class="file-info">
+                    <span>大小：</span>
+                    <span id="originalSize">-</span>
+                </div>
+            </div>
+            <div class="preview-box">
+                <h3>
+                    <svg class="preview-icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M21 15.97l-7-4.03v-2h3.59L14 6.35l-3.59 3.59h3.59v2L7 15.97 14 20v-2.03h3.59L14 14.38l-3.59 3.59h3.59v2z"/>
+                    </svg>
+                    压缩后预览
+                </h3>
+                <div class="image-container">
+                    <img id="compressedImage" alt="压缩后预览">
+                </div>
+                <div class="file-info">
+                    <span>大小：</span>
+                    <span id="compressedSize">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下载按钮 -->
+        <button id="downloadBtn" class="download-btn" disabled>下载压缩后的图片</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
